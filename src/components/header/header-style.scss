@@ -1,0 +1,40 @@
+.title {
+  width: 50%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  h3 {
+    font-size: 21px;
+    color: #8BC357;
+    font-weight: 500;
+
+
+  }
+  p {
+    font-size: 14px;
+    color: #aaa;
+  }
+}
+
+.tab {
+  display: block;
+  width: 50% !important;
+  margin: 0 auto;
+
+  h1 {
+    color: #009688;
+    text-align: center;
+  }
+
+  p {
+    text-align: left;
+    width: 85%;
+    margin: 15px auto;
+    font-size: 15px;
+    line-height: 1.3rem;
+  }
+}
+

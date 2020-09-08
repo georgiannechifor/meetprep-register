@@ -1,0 +1,16 @@
+.reasonList,
+.industryList {
+  display: grid;
+  width: 50%;
+  margin: 5px auto;
+  padding-bottom: 25px;
+}
+
+.reasonList {
+  grid-template-columns: auto auto;
+}
+
+.industryList {
+  grid-template-columns: repeat(5, auto);
+  position: relative;
+}

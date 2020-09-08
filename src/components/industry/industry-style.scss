@@ -1,0 +1,67 @@
+.industry {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 10px;
+  width: calc(100% - 20px);
+  height: 156px;
+  border-radius: 3px;
+  box-shadow: 0 1px 4px #333;
+  user-select: none;
+
+
+  img {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+    filter: brightness(0.9);
+  }
+
+  input {
+    appearance: none;
+    padding: 7px;
+    border: 1px solid transparent;
+    margin-right: auto;
+    border-radius: 3px;
+  }
+
+  input:checked {
+    background-color: #8BC34A;
+    border: 1px solid #adb8c0;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    color: #99a1a7;
+
+    &:after {
+      content: '\2714';
+      font-size: 14px;
+      position: absolute;
+      left: 7px;
+      top: 1.5px;
+      bottom: 0;
+      color: #fff;
+    }
+
+  }
+
+  span {
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    color: #fff;
+    line-height: 25px;
+    font-size: 14px;
+    font-family: Rubik, Roboto, sans-serif;
+    font-weight: 600;
+  }
+
+  &.checked {
+    background-color: rgba(255, 255, 255, 0.2);
+
+  }
+}
+
+
