@@ -1,13 +1,15 @@
 import React, {Component} from 'react';
 import './interest-style.scss';
 import APIService from "../../APIService";
+import { connect } from 'react-redux';
+import { addInterest, removeInterest } from "../../store/actions";
+import { getInterests } from "../../store/selectors";
 
 class Interest extends Component {
   constructor(props) {
     super(props);
     this.state = {
       topics: [],
-      selectedTopics: [],
       inputValue: ""
     }
   }
@@ -29,11 +31,7 @@ class Interest extends Component {
   }
   
   addOnInput = (id, name) => {
-    const temp = localStorage.getItem("interests");
-    let interests = temp === null ? [] : JSON.parse(temp);
-    interests.push(id);
-    localStorage.setItem("interests", JSON.stringify(interests));
-    
+    this.props.addInterest(id);
     this.setState({
       topics: [],
       inputValue: name
@@ -42,18 +40,29 @@ class Interest extends Component {
   
   
   render() {
-    const {id, name, deleteItem} = this.props;
+    const { item: {id, name} , deleteItem } = this.props;
     const { topics } = this.state;
     return (
       <div className="interest">
         <div className="col">
           <p> {name} </p>
-          <span onClick={deleteItem}> &#9932; </span>
+          <span onClick={() => { deleteItem() }}> &#9932; </span>
         </div>
         <div className="filter">
-          <input type="text" placeholder="Add individual topics" value={this.state.inputValue} onChange={ (event) => this.showTopics(event, id)}/>
+          <input
+            type="text"
+            placeholder="Add individual topics"
+            value={this.state.inputValue}
+            onChange={ (event) => this.showTopics(event, id)}
+          />
           <div className="dropdownList">
-            { topics.map(topic => <div key={topic.name} className="option" onClick={() => this.addOnInput(topic.id, topic.name)}> { topic.name} </div>) }
+            { topics.map(topic =>
+              <div
+                key={topic.name}
+                className="option"
+                onClick={() => this.addOnInput(topic.id, topic.name)}> { topic.name}
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -61,4 +70,7 @@ class Interest extends Component {
   }
 }
 
-export default Interest;
+export default connect(
+  (state) => ({ interests: getInterests(state)}),
+  { addInterest, removeInterest }
+)(Interest);
